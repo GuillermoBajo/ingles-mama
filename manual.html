@@ -1,0 +1,170 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Anki para mamá</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap">
+<style>
+/* Layout: one calm reading column; each step is a numbered block with the exact button in a key-like chip */
+:root {
+  --bg: #f4f6f2;
+  --card: #ffffff;
+  --ink: #1d2a24;
+  --muted: #5d6b63;
+  --line: #d9e0da;
+  --accent: #23634a;
+  --chip: #e9efe9;
+  --warn-bg: #fbf1d2;
+  --warn-ink: #4a3a07;
+  --font-head: "Literata", Georgia, "Times New Roman", serif;
+  --font-body: "Atkinson Hyperlegible", -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131a17; --card: #1c2521; --ink: #e8efe9; --muted: #a3b2a9; --line: #2f3b35;
+    --accent: #7cc7a4; --chip: #26302b; --warn-bg: #3a3112; --warn-ink: #f6e7b4; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131a17; --card: #1c2521; --ink: #e8efe9; --muted: #a3b2a9; --line: #2f3b35;
+  --accent: #7cc7a4; --chip: #26302b; --warn-bg: #3a3112; --warn-ink: #f6e7b4; color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 19px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 40px;
+}
+main { max-width: 36rem; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+header { display: flex; flex-direction: column; gap: 10px; }
+h1 { font-family: var(--font-head); font-size: 2rem; line-height: 1.15; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-head); font-size: 1.4rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.lead { color: var(--muted); }
+section { display: flex; flex-direction: column; gap: 14px; }
+.part { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+ol.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: step; }
+ol.steps > li {
+  counter-increment: step; background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 14px 16px 14px 56px; position: relative; display: flex; flex-direction: column; gap: 6px;
+}
+ol.steps > li::before {
+  content: counter(step); position: absolute; left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); color: var(--bg); font-weight: 700; display: grid; place-items: center; font-size: .95rem;
+}
+.key { display: inline-block; background: var(--chip); border: 1px solid var(--line); border-radius: 8px; padding: 0 8px; font-weight: 700; white-space: nowrap; }
+.small { font-size: .92rem; color: var(--muted); }
+.warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { font-size: .85rem; color: var(--muted); font-weight: 700; }
+.tablewrap { overflow-x: auto; }
+footer { color: var(--muted); font-size: .92rem; }
+</style>
+
+<main>
+  <header>
+    <h1>Anki para mamá</h1>
+    <p class="lead">Las Partes 1 a 4 se hacen una sola vez, en el Mac. Después estudias cada día en el móvil (Parte 5) o en el Mac (Parte 6): lo que hagas en uno aparece en el otro. Si algo no coincide con lo que ves, haz una captura y mándasela a Guillermo.</p>
+  </header>
+
+  <section>
+    <span class="part">Parte 1 · En el Mac · una sola vez</span>
+    <h2>Instalar Anki</h2>
+    <ol class="steps">
+      <li>Abre Safari y entra en <b>apps.ankiweb.net</b>.</li>
+      <li>Pulsa <span class="key">Download</span> y elige la versión para <b>Mac</b>. Se descarga un archivo.</li>
+      <li>Abre el archivo descargado (en la carpeta <b>Descargas</b>). Se abre una ventana con el icono de Anki: arrástralo a la carpeta <b>Aplicaciones</b>.</li>
+      <li>Abre <b>Aplicaciones</b> y haz doble clic en <b>Anki</b>. Si el Mac pregunta si quieres abrirla, pulsa <span class="key">Abrir</span>.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="part">Parte 2 · Una sola vez</span>
+    <h2>Crear tu cuenta de AnkiWeb (gratis)</h2>
+    <p>Es la cuenta que une el Mac y el móvil.</p>
+    <ol class="steps">
+      <li>En Safari, entra en <b>ankiweb.net</b> y pulsa <span class="key">Sign Up</span>.</li>
+      <li>Escribe tu email y una contraseña. Apúntalas en un papel: las necesitarás en el Mac y en el móvil.</li>
+      <li>Abre el email que te llega de AnkiWeb y pulsa el enlace para confirmar la cuenta.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="part">Parte 3 · En el Mac · una sola vez</span>
+    <h2>Meter tu mazo de inglés</h2>
+    <ol class="steps">
+      <li>Guillermo te enviará un archivo llamado <b>Ingles_Mama.apkg</b>. Guárdalo en el Mac (por ejemplo en Descargas).</li>
+      <li>Haz <b>doble clic</b> en el archivo. Anki se abre y lo importa solo.
+        <span class="small">Si no funciona: en Anki, menú <span class="key">File</span> (o <span class="key">Archivo</span>) → <span class="key">Import</span> (o <span class="key">Importar</span>) y elige el archivo.</span></li>
+      <li>En la lista de mazos aparecerá <b>Inglés de mamá</b>. ¡Ya está dentro!</li>
+    </ol>
+    <div class="warn">
+      <b>Este archivo se importa una sola vez.</b>
+      <p>Si más adelante Guillermo te manda otro con palabras nuevas, se importa igual. Nunca vuelvas a importar el primero.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="part">Parte 4 · En el Mac · una sola vez</span>
+    <h2>Conectar el Mac con la web</h2>
+    <ol class="steps">
+      <li>En Anki, pulsa el botón de <b>sincronizar</b>: el de arriba a la derecha (dos flechas en círculo).</li>
+      <li>Escribe el email y la contraseña de AnkiWeb de la Parte 2.</li>
+      <li>Te preguntará si quieres <span class="key">Upload</span> o <span class="key">Download</span>. Elige <span class="key">Upload</span> (subir): así tu mazo sube a la web.</li>
+      <li>Espera a que termine. Desde ahora Anki se sincroniza solo cada vez que lo abres y lo cierras.</li>
+    </ol>
+    <div class="warn">
+      <b>Solo esta primera vez</b> se elige Upload. Si alguna vez vuelve a preguntar Upload o Download, no elijas nada y llama a Guillermo.
+    </div>
+  </section>
+
+  <section>
+    <span class="part">Parte 5 · Cada día · en el móvil</span>
+    <h2>Estudiar en el móvil</h2>
+    <ol class="steps">
+      <li>Toca el icono de <b>AnkiWeb</b> que tienes en la pantalla del móvil.</li>
+      <li>La primera vez te pedirá entrar: pon el mismo email y contraseña. Después ya no hace falta.</li>
+      <li>Toca <b>Inglés de mamá</b> y después el botón para empezar a estudiar.</li>
+      <li>Verás una palabra en inglés dentro de una frase. <b>Escucha el audio y di en voz alta qué significa.</b></li>
+      <li>Toca <span class="key">Show Answer</span> (mostrar respuesta). Compara con lo que habías dicho y lee los ejemplos.</li>
+      <li>Elige uno de los cuatro botones con sinceridad (ver la tabla). Sigue hasta que te diga que has terminado por hoy: unos 10 minutos.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="part">Parte 6 · Cuando quieras · en el Mac</span>
+    <h2>Estudiar en el Mac</h2>
+    <ol class="steps">
+      <li>Abre Anki. Se sincroniza solo y trae lo que hayas hecho en el móvil.</li>
+      <li>Haz clic en <b>Inglés de mamá</b> y después en <span class="key">Study Now</span> (Estudiar ahora).</li>
+      <li>Igual que en el móvil: piensa la respuesta, pulsa <span class="key">Show Answer</span> y elige un botón.</li>
+      <li>Al terminar, <b>cierra Anki</b>: así se sincroniza y en el móvil verás lo mismo.</li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="part">Los cuatro botones</span>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Botón</th><th>Cuándo tocarlo</th></tr></thead>
+        <tbody>
+          <tr><td><span class="key">Again</span></td><td>No me acordaba o me he equivocado. Vuelve a salir en unos minutos.</td></tr>
+          <tr><td><span class="key">Hard</span></td><td>La he sacado, pero me ha costado mucho.</td></tr>
+          <tr><td><span class="key">Good</span></td><td>La sabía. <b>Es el que más usarás.</b></td></tr>
+          <tr><td><span class="key">Easy</span></td><td>Facilísima.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">En español pueden aparecer como Otra vez, Difícil, Bien y Fácil. Encima de cada botón pone cuándo volverá la tarjeta (10m = 10 minutos, 1d = mañana).</p>
+    <div class="warn">
+      <b>El truco es la constancia.</b>
+      <p>Mejor 10 minutos todos los días que una hora el domingo. Si un día no puedes, al siguiente tendrás algo más de repaso: es normal.</p>
+    </div>
+  </section>
+
+  <footer>Hecho por Guillermo. Si algo no sale como aquí, haz una captura de pantalla y mándasela por WhatsApp.</footer>
+</main>
+
+</body></html>

@@ -1,0 +1,290 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Prueba de palabras B1–B2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap">
+<style>
+/* Layout: one word per screen, big tap targets, a notebook-like calm page */
+:root {
+  --bg: #f4f6f2;
+  --card: #ffffff;
+  --ink: #1d2a24;
+  --muted: #5d6b63;
+  --line: #d9e0da;
+  --accent: #23634a;
+  --know: #23634a;
+  --know-fg: #ffffff;
+  --maybe: #f1d58a;
+  --maybe-fg: #3d3006;
+  --no: #e6e9e6;
+  --no-fg: #1d2a24;
+  --bad: #a43b2a;
+  --font-word: "Literata", Georgia, "Times New Roman", serif;
+  --font-body: "Atkinson Hyperlegible", -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131a17; --card: #1c2521; --ink: #e8efe9; --muted: #a3b2a9; --line: #2f3b35;
+    --accent: #7cc7a4; --know: #3f9a73; --know-fg: #ffffff; --maybe: #8a7425; --maybe-fg: #fff6da;
+    --no: #2a3430; --no-fg: #e8efe9; --bad: #ef8a76; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131a17; --card: #1c2521; --ink: #e8efe9; --muted: #a3b2a9; --line: #2f3b35;
+  --accent: #7cc7a4; --know: #3f9a73; --know-fg: #ffffff; --maybe: #8a7425; --maybe-fg: #fff6da;
+  --no: #2a3430; --no-fg: #e8efe9; --bad: #ef8a76; color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body);
+  font-size: 19px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 28px;
+}
+main { max-width: 34rem; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+h1 { font-family: var(--font-word); font-size: 1.7rem; line-height: 1.2; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-word); font-size: 1.35rem; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+ul.steps { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
+button, .btn {
+  font: inherit; font-weight: 700; font-size: 1.05rem; border: 0; border-radius: 14px;
+  min-height: 60px; padding: 12px 18px; cursor: pointer; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 10px; text-align: center;
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.primary, .know { background: var(--know); color: var(--know-fg); }
+.maybe { background: var(--maybe); color: var(--maybe-fg); }
+.no { background: var(--no); color: var(--no-fg); border: 1px solid var(--line); }
+.ghost { background: transparent; color: var(--accent); min-height: 48px; font-size: 1rem; border: 1px solid var(--line); }
+.row { display: flex; gap: 10px; }
+.row > * { flex: 1; min-width: 0; }
+.progress { display: flex; flex-direction: column; gap: 6px; }
+.bar { height: 10px; background: var(--no); border-radius: 99px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.count { font-variant-numeric: tabular-nums; color: var(--muted); font-size: .95rem; }
+.word-card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 18px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.word { font-family: var(--font-word); font-weight: 700; font-size: clamp(2.2rem, 11vw, 3.2rem); line-height: 1.1; text-align: center; overflow-wrap: anywhere; }
+.speak { width: auto; min-height: 48px; padding: 8px 18px; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 99px; font-size: 1rem; }
+.choices { display: flex; flex-direction: column; gap: 10px; }
+.choice { background: var(--card); color: var(--ink); border: 2px solid var(--line); font-weight: 400; justify-content: flex-start; text-align: left; }
+.code { font-family: ui-monospace, Menlo, monospace; font-size: .8rem; background: var(--no); border-radius: 10px; padding: 10px; overflow-wrap: anywhere; user-select: all; }
+.stat { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-block: 8px; }
+.stat:last-child { border-bottom: 0; }
+.stat b { font-variant-numeric: tabular-nums; }
+.note { font-size: .95rem; color: var(--muted); }
+.feedback-bad { color: var(--bad); font-weight: 700; }
+.part-btn { justify-content: space-between; }
+.part-btn small { font-weight: 400; opacity: .85; }
+.done-tag { font-size: .9rem; font-weight: 700; }
+.alert { background: var(--maybe); color: var(--maybe-fg); border-radius: 14px; padding: 12px 14px; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<main id="app">
+  <!-- Home: choose a part -->
+  <section id="s-home" class="stack">
+    <h1>Prueba de palabras de inglés</h1>
+    <p>Vas a ver palabras en inglés, una a una. Para cada una, toca el botón que mejor te describa. No hay que escribir nada.</p>
+    <div class="panel">
+      <ul class="steps">
+        <li><b>Sé lo que significa</b>: podrías decir qué quiere decir.</li>
+        <li><b>Me suena</b>: la has visto, pero no estás segura.</li>
+        <li><b>No la conozco</b>: no tienes ni idea.</li>
+      </ul>
+    </div>
+    <p class="note">Algunas palabras son inventadas a propósito, y a veces te preguntaré qué significa una para comprobarlo. Contesta con sinceridad: así tu mazo tendrá solo lo que de verdad te sirve.</p>
+    <p>La prueba tiene <b>dos partes de unos 7 minutos</b>. Haz cada parte de una vez y, al acabarla, envíasela a Guillermo por WhatsApp. Puedes hacer la segunda otro día.</p>
+    <p class="alert" id="no-storage" hidden>En este móvil la página no puede guardar el avance. No la cierres hasta terminar la parte que empieces.</p>
+    <button class="primary part-btn" id="btn-p1" type="button"><span>Parte 1</span><small id="p1-state"></small></button>
+    <button class="primary part-btn" id="btn-p2" type="button"><span>Parte 2</span><small id="p2-state"></small></button>
+  </section>
+
+  <!-- Question -->
+  <section id="s-q" class="stack" hidden>
+    <div class="progress">
+      <div class="bar"><i id="bar"></i></div>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="word-card">
+      <div class="word" id="word"></div>
+      <button class="speak" id="btn-speak" type="button" aria-label="Escuchar la palabra">🔊 Escuchar</button>
+    </div>
+    <div class="stack">
+      <button class="know" id="btn-know" type="button">Sé lo que significa</button>
+      <button class="maybe" id="btn-maybe" type="button">Me suena, pero no sé bien</button>
+      <button class="no" id="btn-no" type="button">No la conozco</button>
+    </div>
+    <button class="ghost" id="btn-back" type="button">← Volver a la anterior</button>
+  </section>
+
+  <!-- Meaning check -->
+  <section id="s-check" class="stack" hidden>
+    <h2>¿Qué significa <span id="check-word"></span>?</h2>
+    <p class="muted">Elige una opción.</p>
+    <div class="choices" id="choices"></div>
+  </section>
+
+  <!-- Part done: send this part's code -->
+  <section id="s-done" class="stack" hidden>
+    <h1 id="done-title"></h1>
+    <p><b>Ahora envíale este resultado a Guillermo.</b> Así no se pierde nada aunque cierres la página.</p>
+    <a class="btn primary" id="btn-wa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+    <p class="note">Se abre WhatsApp con el mensaje ya escrito: elige a Guillermo y pulsa enviar. Si no se abre, toca «Copiar el código» y pégalo en un mensaje.</p>
+    <button class="ghost" id="btn-copy" type="button">Copiar el código</button>
+    <div class="code" id="code"></div>
+    <p class="note" id="copy-msg" aria-live="polite"></p>
+    <button class="ghost" id="btn-home" type="button">Volver al inicio</button>
+  </section>
+</main>
+
+<script>
+const DATA = {"version": "T1", "items": [{"w": "afford", "es": "permitirse (pagar algo)", "lvl": "B1"}, {"w": "although", "es": "aunque", "lvl": "B1"}, {"w": "apply", "es": "solicitar (un trabajo)", "lvl": "B1"}, {"w": "avoid", "es": "evitar", "lvl": "B1"}, {"w": "behave", "es": "comportarse", "lvl": "B1"}, {"w": "borrow", "es": "pedir prestado", "lvl": "B1"}, {"w": "lend", "es": "prestar", "lvl": "B1"}, {"w": "bother", "es": "molestar", "lvl": "B1"}, {"w": "cheat", "es": "hacer trampa, engañar", "lvl": "B1"}, {"w": "complain", "es": "quejarse", "lvl": "B1"}, {"w": "argue", "es": "discutir", "lvl": "B1"}, {"w": "deserve", "es": "merecer", "lvl": "B1"}, {"w": "disappointed", "es": "decepcionado", "lvl": "B1"}, {"w": "embarrassed", "es": "avergonzado", "lvl": "B1"}, {"w": "encourage", "es": "animar (a alguien)", "lvl": "B1"}, {"w": "expect", "es": "esperar (prever)", "lvl": "B1"}, {"w": "fail", "es": "suspender, fracasar", "lvl": "B1"}, {"w": "frightened", "es": "asustado", "lvl": "B1"}, {"w": "grow up", "es": "crecer, criarse", "lvl": "B1"}, {"w": "hire", "es": "contratar", "lvl": "B1"}, {"w": "improve", "es": "mejorar", "lvl": "B1"}, {"w": "increase", "es": "aumentar", "lvl": "B1"}, {"w": "injure", "es": "herir, lesionar", "lvl": "B1"}, {"w": "lack", "es": "falta, carencia", "lvl": "B1"}, {"w": "trust", "es": "confiar", "lvl": "B1"}, {"w": "manage", "es": "conseguir; gestionar", "lvl": "B1"}, {"w": "mention", "es": "mencionar", "lvl": "B1"}, {"w": "miss", "es": "echar de menos", "lvl": "B1"}, {"w": "notice", "es": "darse cuenta, notar", "lvl": "B1"}, {"w": "own", "es": "propio; poseer", "lvl": "B1"}, {"w": "persuade", "es": "convencer", "lvl": "B1"}, {"w": "pretend", "es": "fingir", "lvl": "B1"}, {"w": "prevent", "es": "impedir, evitar", "lvl": "B1"}, {"w": "proud", "es": "orgulloso", "lvl": "B1"}, {"w": "raise", "es": "subir, levantar", "lvl": "B1"}, {"w": "recognise", "es": "reconocer", "lvl": "B1"}, {"w": "refuse", "es": "negarse", "lvl": "B1"}, {"w": "remind", "es": "recordar (a alguien)", "lvl": "B1"}, {"w": "rent", "es": "alquiler; alquilar", "lvl": "B1"}, {"w": "rude", "es": "maleducado", "lvl": "B1"}, {"w": "save", "es": "ahorrar", "lvl": "B1"}, {"w": "shy", "es": "tímido", "lvl": "B1"}, {"w": "skill", "es": "habilidad", "lvl": "B1"}, {"w": "spend", "es": "gastar (dinero)", "lvl": "B1"}, {"w": "steal", "es": "robar", "lvl": "B1"}, {"w": "suggest", "es": "sugerir", "lvl": "B1"}, {"w": "support", "es": "apoyar", "lvl": "B1"}, {"w": "lie", "es": "mentir", "lvl": "B1"}, {"w": "upset", "es": "disgustado, triste", "lvl": "B1"}, {"w": "waste", "es": "desperdiciar", "lvl": "B1"}, {"w": "worried", "es": "preocupado", "lvl": "B1"}, {"w": "yet", "es": "todavía (en negativas)", "lvl": "B1"}, {"w": "already", "es": "ya", "lvl": "B1"}, {"w": "unless", "es": "a menos que", "lvl": "B1"}, {"w": "instead", "es": "en su lugar", "lvl": "B1"}, {"w": "actually", "es": "en realidad", "lvl": "B1"}, {"w": "eventually", "es": "al final, finalmente", "lvl": "B1"}, {"w": "hardly", "es": "apenas", "lvl": "B1"}, {"w": "nearly", "es": "casi", "lvl": "B1"}, {"w": "rather", "es": "bastante; más bien", "lvl": "B1"}, {"w": "seem", "es": "parecer", "lvl": "B1"}, {"w": "bill", "es": "factura, cuenta", "lvl": "B1"}, {"w": "receipt", "es": "recibo, ticket de compra", "lvl": "B1"}, {"w": "fee", "es": "tarifa, cuota", "lvl": "B1"}, {"w": "salary", "es": "sueldo", "lvl": "B1"}, {"w": "wage", "es": "salario (por horas)", "lvl": "B1"}, {"w": "debt", "es": "deuda", "lvl": "B1"}, {"w": "loan", "es": "préstamo", "lvl": "B1"}, {"w": "neighbour", "es": "vecino", "lvl": "B1"}, {"w": "crowd", "es": "multitud", "lvl": "B1"}, {"w": "journey", "es": "viaje, trayecto", "lvl": "B1"}, {"w": "luggage", "es": "equipaje", "lvl": "B1"}, {"w": "delay", "es": "retraso", "lvl": "B1"}, {"w": "queue", "es": "cola, fila", "lvl": "B1"}, {"w": "sign", "es": "firmar; señal", "lvl": "B1"}, {"w": "ground", "es": "suelo, tierra", "lvl": "B1"}, {"w": "floor", "es": "suelo; planta (de un edificio)", "lvl": "B1"}, {"w": "ceiling", "es": "techo (de una habitación)", "lvl": "B1"}, {"w": "drawer", "es": "cajón", "lvl": "B1"}, {"w": "shelf", "es": "estante, balda", "lvl": "B1"}, {"w": "sink", "es": "fregadero", "lvl": "B1"}, {"w": "tap", "es": "grifo", "lvl": "B1"}, {"w": "bin", "es": "cubo de basura, papelera", "lvl": "B1"}, {"w": "knife", "es": "cuchillo", "lvl": "B1"}, {"w": "pan", "es": "sartén", "lvl": "B1"}, {"w": "oven", "es": "horno", "lvl": "B1"}, {"w": "flour", "es": "harina", "lvl": "B1"}, {"w": "groceries", "es": "la compra (comida)", "lvl": "B1"}, {"w": "cough", "es": "tos; toser", "lvl": "B1"}, {"w": "pain", "es": "dolor", "lvl": "B1"}, {"w": "sore", "es": "dolorido, irritado", "lvl": "B1"}, {"w": "prescription", "es": "receta médica", "lvl": "B1"}, {"w": "appointment", "es": "cita (médico, trabajo)", "lvl": "B1"}, {"w": "nurse", "es": "enfermero, enfermera", "lvl": "B1"}, {"w": "wound", "es": "herida", "lvl": "B1"}, {"w": "weight", "es": "peso", "lvl": "B1"}, {"w": "height", "es": "altura", "lvl": "B1"}, {"w": "fog", "es": "niebla", "lvl": "B1"}, {"w": "storm", "es": "tormenta", "lvl": "B1"}, {"w": "field", "es": "campo", "lvl": "B1"}, {"w": "hill", "es": "colina", "lvl": "B1"}, {"w": "path", "es": "camino, sendero", "lvl": "B1"}, {"w": "bridge", "es": "puente", "lvl": "B1"}, {"w": "tool", "es": "herramienta", "lvl": "B1"}, {"w": "wire", "es": "cable, alambre", "lvl": "B1"}, {"w": "rope", "es": "cuerda", "lvl": "B1"}, {"w": "lock", "es": "cerradura; cerrar con llave", "lvl": "B1"}, {"w": "leather", "es": "cuero", "lvl": "B1"}, {"w": "wool", "es": "lana", "lvl": "B1"}, {"w": "cotton", "es": "algodón", "lvl": "B1"}, {"w": "sleeve", "es": "manga", "lvl": "B1"}, {"w": "pocket", "es": "bolsillo", "lvl": "B1"}, {"w": "belt", "es": "cinturón", "lvl": "B1"}, {"w": "wallet", "es": "cartera (de bolsillo)", "lvl": "B1"}, {"w": "purse", "es": "monedero", "lvl": "B1"}, {"w": "advice", "es": "consejo", "lvl": "B1"}, {"w": "knowledge", "es": "conocimiento", "lvl": "B1"}, {"w": "agreement", "es": "acuerdo", "lvl": "B1"}, {"w": "behaviour", "es": "comportamiento", "lvl": "B1"}, {"w": "guess", "es": "adivinar, suponer", "lvl": "B1"}, {"w": "achieve", "es": "lograr, conseguir", "lvl": "B2"}, {"w": "acknowledge", "es": "reconocer, admitir", "lvl": "B2"}, {"w": "adjust", "es": "ajustar, adaptarse", "lvl": "B2"}, {"w": "approach", "es": "enfoque; acercarse", "lvl": "B2"}, {"w": "assume", "es": "suponer, dar por hecho", "lvl": "B2"}, {"w": "attempt", "es": "intento; intentar", "lvl": "B2"}, {"w": "awareness", "es": "concienciación, conciencia", "lvl": "B2"}, {"w": "aware", "es": "consciente (de algo)", "lvl": "B2"}, {"w": "bargain", "es": "ganga, chollo", "lvl": "B2"}, {"w": "belong", "es": "pertenecer", "lvl": "B2"}, {"w": "benefit", "es": "beneficio, ventaja", "lvl": "B2"}, {"w": "blame", "es": "culpar", "lvl": "B2"}, {"w": "breathe", "es": "respirar", "lvl": "B2"}, {"w": "burden", "es": "carga, peso", "lvl": "B2"}, {"w": "claim", "es": "afirmar; reclamar", "lvl": "B2"}, {"w": "commit", "es": "cometer; comprometerse", "lvl": "B2"}, {"w": "concern", "es": "preocupación", "lvl": "B2"}, {"w": "cope", "es": "arreglárselas, sobrellevar", "lvl": "B2"}, {"w": "crowded", "es": "abarrotado, lleno de gente", "lvl": "B2"}, {"w": "currently", "es": "actualmente", "lvl": "B2"}, {"w": "decrease", "es": "disminuir", "lvl": "B2"}, {"w": "demand", "es": "exigir; demanda", "lvl": "B2"}, {"w": "deny", "es": "negar", "lvl": "B2"}, {"w": "determined", "es": "decidido, resuelto", "lvl": "B2"}, {"w": "doubt", "es": "duda; dudar", "lvl": "B2"}, {"w": "eager", "es": "con muchas ganas, deseoso", "lvl": "B2"}, {"w": "effort", "es": "esfuerzo", "lvl": "B2"}, {"w": "enhance", "es": "mejorar, realzar", "lvl": "B2"}, {"w": "ensure", "es": "asegurar(se) de", "lvl": "B2"}, {"w": "evidence", "es": "pruebas, evidencia", "lvl": "B2"}, {"w": "exhausted", "es": "agotado", "lvl": "B2"}, {"w": "fair", "es": "justo", "lvl": "B2"}, {"w": "fault", "es": "culpa; defecto", "lvl": "B2"}, {"w": "feature", "es": "característica, rasgo", "lvl": "B2"}, {"w": "forbid", "es": "prohibir", "lvl": "B2"}, {"w": "former", "es": "antiguo, anterior", "lvl": "B2"}, {"w": "genuine", "es": "auténtico, sincero", "lvl": "B2"}, {"w": "grateful", "es": "agradecido", "lvl": "B2"}, {"w": "handle", "es": "manejar, encargarse de", "lvl": "B2"}, {"w": "harm", "es": "daño; dañar", "lvl": "B2"}, {"w": "hesitate", "es": "dudar, vacilar", "lvl": "B2"}, {"w": "imply", "es": "insinuar, implicar", "lvl": "B2"}, {"w": "income", "es": "ingresos", "lvl": "B2"}, {"w": "jealous", "es": "celoso, envidioso", "lvl": "B2"}, {"w": "likely", "es": "probable", "lvl": "B2"}, {"w": "meanwhile", "es": "mientras tanto", "lvl": "B2"}, {"w": "mess", "es": "desorden, lío", "lvl": "B2"}, {"w": "mood", "es": "humor, estado de ánimo", "lvl": "B2"}, {"w": "nevertheless", "es": "sin embargo, aun así", "lvl": "B2"}, {"w": "obey", "es": "obedecer", "lvl": "B2"}, {"w": "occur", "es": "ocurrir, suceder", "lvl": "B2"}, {"w": "outcome", "es": "resultado", "lvl": "B2"}, {"w": "overcome", "es": "superar", "lvl": "B2"}, {"w": "overall", "es": "en general, en conjunto", "lvl": "B2"}, {"w": "owe", "es": "deber (dinero, un favor)", "lvl": "B2"}, {"w": "praise", "es": "elogiar; elogio", "lvl": "B2"}, {"w": "pursue", "es": "perseguir (un objetivo)", "lvl": "B2"}, {"w": "quote", "es": "cita; presupuesto", "lvl": "B2"}, {"w": "reliable", "es": "fiable", "lvl": "B2"}, {"w": "rely on", "es": "depender de, contar con", "lvl": "B2"}, {"w": "reluctant", "es": "reacio, poco dispuesto", "lvl": "B2"}, {"w": "remarkable", "es": "extraordinario, notable", "lvl": "B2"}, {"w": "resign", "es": "dimitir", "lvl": "B2"}, {"w": "retire", "es": "jubilarse", "lvl": "B2"}, {"w": "reveal", "es": "revelar", "lvl": "B2"}, {"w": "rough", "es": "áspero; aproximado", "lvl": "B2"}, {"w": "shame", "es": "vergüenza; lástima", "lvl": "B2"}, {"w": "severe", "es": "grave, severo", "lvl": "B2"}, {"w": "shortage", "es": "escasez", "lvl": "B2"}, {"w": "slightly", "es": "ligeramente, un poco", "lvl": "B2"}, {"w": "spare", "es": "de sobra, de repuesto", "lvl": "B2"}, {"w": "struggle", "es": "luchar, costar (esfuerzo)", "lvl": "B2"}, {"w": "suitable", "es": "adecuado, apropiado", "lvl": "B2"}, {"w": "suspicious", "es": "sospechoso; desconfiado", "lvl": "B2"}, {"w": "tend to", "es": "soler, tender a", "lvl": "B2"}, {"w": "threat", "es": "amenaza", "lvl": "B2"}, {"w": "thorough", "es": "minucioso, exhaustivo", "lvl": "B2"}, {"w": "tough", "es": "duro, difícil", "lvl": "B2"}, {"w": "trend", "es": "tendencia", "lvl": "B2"}, {"w": "urge", "es": "instar; impulso", "lvl": "B2"}, {"w": "vague", "es": "vago, impreciso", "lvl": "B2"}, {"w": "vary", "es": "variar", "lvl": "B2"}, {"w": "wealth", "es": "riqueza", "lvl": "B2"}, {"w": "whereas", "es": "mientras que", "lvl": "B2"}, {"w": "wisdom", "es": "sabiduría", "lvl": "B2"}, {"w": "witness", "es": "testigo", "lvl": "B2"}, {"w": "worth", "es": "que vale la pena; valor", "lvl": "B2"}, {"w": "warn", "es": "advertir, avisar", "lvl": "B2"}, {"w": "anxious", "es": "inquieto, ansioso", "lvl": "B2"}, {"w": "apparently", "es": "al parecer", "lvl": "B2"}, {"w": "arise", "es": "surgir", "lvl": "B2"}, {"w": "boast", "es": "presumir, alardear", "lvl": "B2"}, {"w": "bury", "es": "enterrar", "lvl": "B2"}, {"w": "cautious", "es": "prudente, cauteloso", "lvl": "B2"}, {"w": "compromise", "es": "acuerdo mutuo, término medio", "lvl": "B2"}, {"w": "consistent", "es": "constante, coherente", "lvl": "B2"}, {"w": "convenient", "es": "práctico, cómodo", "lvl": "B2"}, {"w": "deadline", "es": "fecha límite, plazo", "lvl": "B2"}, {"w": "delighted", "es": "encantado", "lvl": "B2"}, {"w": "dull", "es": "aburrido, soso", "lvl": "B2"}, {"w": "entire", "es": "entero, todo", "lvl": "B2"}, {"w": "estimate", "es": "calcular; cálculo aproximado", "lvl": "B2"}, {"w": "fancy", "es": "apetecer; elegante", "lvl": "B2"}, {"w": "frankly", "es": "francamente", "lvl": "B2"}, {"w": "gather", "es": "reunir(se), recoger", "lvl": "B2"}, {"w": "grab", "es": "agarrar", "lvl": "B2"}, {"w": "guilty", "es": "culpable", "lvl": "B2"}, {"w": "keen", "es": "entusiasta, con ganas", "lvl": "B2"}, {"w": "lean", "es": "apoyarse, inclinarse", "lvl": "B2"}, {"w": "load", "es": "carga; cargar", "lvl": "B2"}, {"w": "mild", "es": "suave, leve", "lvl": "B2"}, {"w": "neat", "es": "ordenado, pulcro", "lvl": "B2"}, {"w": "odd", "es": "raro, extraño", "lvl": "B2"}, {"w": "pace", "es": "ritmo", "lvl": "B2"}, {"w": "proof", "es": "prueba (demostración)", "lvl": "B2"}, {"w": "refund", "es": "reembolso", "lvl": "B2"}, {"w": "regret", "es": "arrepentirse; lamentar", "lvl": "B2"}, {"w": "sensible", "es": "sensato", "lvl": "B2"}, {"w": "stubborn", "es": "testarudo", "lvl": "B2"}, {"w": "tackle", "es": "abordar, afrontar", "lvl": "B2"}, {"w": "blanter", "es": null, "lvl": "P"}, {"w": "crombish", "es": null, "lvl": "P"}, {"w": "flurdle", "es": null, "lvl": "P"}, {"w": "glimster", "es": null, "lvl": "P"}, {"w": "harpent", "es": null, "lvl": "P"}, {"w": "prendle", "es": null, "lvl": "P"}, {"w": "quorbity", "es": null, "lvl": "P"}, {"w": "scrimble", "es": null, "lvl": "P"}, {"w": "slunter", "es": null, "lvl": "P"}, {"w": "vexton", "es": null, "lvl": "P"}, {"w": "wendrous", "es": null, "lvl": "P"}, {"w": "flember", "es": null, "lvl": "P"}, {"w": "grasken", "es": null, "lvl": "P"}, {"w": "morbish", "es": null, "lvl": "P"}, {"w": "plintory", "es": null, "lvl": "P"}, {"w": "drosker", "es": null, "lvl": "P"}]};   // [{w, es, lvl}] in the frozen canonical order
+const N = DATA.items.length;
+const $ = (id) => document.getElementById(id);
+// Two fixed, balanced parts: even canonical indices = part 1, odd = part 2.
+const PARTS = { 1: [], 2: [] };
+for (let i = 0; i < N; i++) PARTS[i % 2 === 0 ? 1 : 2].push(i);
+
+// --- Storage (may be unavailable inside some in-app browsers) ----------
+const KEY = (p) => `mama-vocab-${DATA.version}-p${p}`;
+let canStore = true;
+try { localStorage.setItem("mama-probe", "1"); canStore = localStorage.getItem("mama-probe") === "1"; } catch (e) { canStore = false; }
+const mem = {};
+function load(p) {
+  try { const s = JSON.parse(localStorage.getItem(KEY(p))); if (s && s.res) return s; } catch (e) {}
+  return mem[p] || null;
+}
+function save() { mem[st.part] = st; try { localStorage.setItem(KEY(st.part), JSON.stringify(st)); } catch (e) {} }
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function fresh(p) { return { part: p, order: shuffle([...PARTS[p]]), pos: 0, res: {}, yes: 0, hist: [] }; }
+let st = null;
+
+function show(id) {
+  for (const s of ["s-home", "s-q", "s-check", "s-done"]) $(s).hidden = s !== id;
+  window.scrollTo(0, 0);
+}
+
+// --- Home ---------------------------------------------------------------
+function stateLabel(p) {
+  const s = load(p);
+  if (!s || s.pos === 0) return "Empezar";
+  if (s.pos >= s.order.length) return "Hecha ✓ (ver código)";
+  return `Seguir (${s.pos} de ${s.order.length})`;
+}
+function renderHome() {
+  $("p1-state").textContent = stateLabel(1);
+  $("p2-state").textContent = stateLabel(2);
+  $("no-storage").hidden = canStore;
+  show("s-home");
+}
+function openPart(p) { st = load(p) || fresh(p); save(); renderQ(); }
+
+// --- Audio: British voice if the phone has one -------------------------
+let voice = null;
+function pickVoice() {
+  if (!("speechSynthesis" in window)) return;
+  const vs = speechSynthesis.getVoices();
+  voice = vs.find(v => v.lang === "en-GB") || vs.find(v => v.lang && v.lang.startsWith("en")) || null;
+}
+if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+else { $("btn-speak").hidden = true; }
+function speak(text) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-GB"; u.rate = 0.85; if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+// --- Questions ----------------------------------------------------------
+function current() { return DATA.items[st.order[st.pos]]; }
+function renderQ() {
+  const total = st.order.length;
+  if (st.pos >= total) return renderDone();
+  $("word").textContent = current().w;
+  $("count").textContent = `Parte ${st.part} · palabra ${st.pos + 1} de ${total}`;
+  $("bar").style.width = (100 * st.pos / total) + "%";
+  $("btn-back").hidden = st.hist.length === 0;
+  show("s-q");
+}
+function answer(code) {
+  const idx = st.order[st.pos];
+  st.hist.push({ pos: st.pos, idx, prev: st.res[idx] || "", yes: st.yes });
+  st.res[idx] = code;
+  st.pos++;
+  save();
+  renderQ();
+}
+function onKnow() {
+  const it = current();
+  // Every third 'I know it' on a real word gets a quick meaning check.
+  if (it.es && st.yes % 3 === 2) { st.yes++; return renderCheck(it); }
+  if (it.es) st.yes++;
+  answer("y");
+}
+function renderCheck(it) {
+  $("check-word").textContent = it.w;
+  const others = shuffle(DATA.items.filter(x => x.es && x.w !== it.w)).slice(0, 3).map(x => x.es);
+  const box = $("choices"); box.textContent = "";
+  for (const o of shuffle([it.es, ...others])) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "choice"; b.textContent = o;
+    b.addEventListener("click", () => answer(o === it.es ? "v" : "x"));
+    box.appendChild(b);
+  }
+  show("s-check");
+}
+function back() {
+  const h = st.hist.pop(); if (!h) return;
+  st.pos = h.pos; st.yes = h.yes;
+  if (h.prev) st.res[h.idx] = h.prev; else delete st.res[h.idx];
+  save(); renderQ();
+}
+
+// --- Part result --------------------------------------------------------
+// One character per word of this part, in canonical order.
+function partCode(s) {
+  return `MAMA-${DATA.version}-P${s.part}|` + PARTS[s.part].map(i => s.res[i] || "-").join("");
+}
+function renderDone() {
+  const code = partCode(st);
+  const other = st.part === 1 ? 2 : 1;
+  const otherDone = (() => { const s = load(other); return s && s.pos >= s.order.length; })();
+  $("done-title").textContent = otherDone ? "¡Prueba terminada, muchas gracias!" : `¡Parte ${st.part} terminada!`;
+  $("code").textContent = code;
+  $("btn-wa").href = "https://wa.me/?text=" + encodeURIComponent(`Prueba de inglés, parte ${st.part}:\n` + code);
+  $("copy-msg").textContent = otherDone ? "" : `Cuando quieras, vuelve al inicio para hacer la parte ${other}.`;
+  $("bar").style.width = "100%";
+  show("s-done");
+}
+
+// --- Wiring -------------------------------------------------------------
+$("btn-p1").addEventListener("click", () => openPart(1));
+$("btn-p2").addEventListener("click", () => openPart(2));
+$("btn-know").addEventListener("click", onKnow);
+$("btn-maybe").addEventListener("click", () => answer("m"));
+$("btn-no").addEventListener("click", () => answer("n"));
+$("btn-back").addEventListener("click", back);
+$("btn-speak").addEventListener("click", () => speak(current().w));
+$("btn-home").addEventListener("click", renderHome);
+$("btn-copy").addEventListener("click", () => {
+  const code = partCode(st);
+  const done = (ok) => { $("copy-msg").textContent = ok ? "Código copiado. Pégalo en un mensaje a Guillermo." : "Mantén el dedo sobre el código para seleccionarlo y copiarlo."; };
+  try { navigator.clipboard.writeText(code).then(() => done(true), () => done(false)); } catch (e) { done(false); }
+});
+renderHome();
+</script>
+
+</body></html>
