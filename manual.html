@@ -35,7 +35,7 @@ body {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: 24px 40px;
 }
-main { max-width: 36rem; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+main { max-width: 36rem; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
 header { display: flex; flex-direction: column; gap: 10px; }
 h1 { font-family: var(--font-head); font-size: 2rem; line-height: 1.15; margin: 0; text-wrap: balance; }
 h2 { font-family: var(--font-head); font-size: 1.4rem; line-height: 1.25; margin: 0; text-wrap: balance; }
@@ -52,9 +52,12 @@ ol.steps > li::before {
   content: counter(step); position: absolute; left: 14px; top: 14px; width: 30px; height: 30px; border-radius: 50%;
   background: var(--accent); color: var(--bg); font-weight: 700; display: grid; place-items: center; font-size: .95rem;
 }
-.key { display: inline-block; background: var(--chip); border: 1px solid var(--line); border-radius: 8px; padding: 0 8px; font-weight: 700; white-space: nowrap; }
+.key { display: inline-block; background: var(--chip); border: 1px solid var(--line); border-radius: 8px; padding: 0 8px; font-weight: 700; }
 .small { font-size: .92rem; color: var(--muted); }
 .warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.toc { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.toc ol { margin: 6px 0 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 4px; }
+.toc a { color: var(--accent); }
 table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
 th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 tr:last-child td { border-bottom: 0; }
@@ -66,82 +69,123 @@ footer { color: var(--muted); font-size: .92rem; }
 <main>
   <header>
     <h1>Anki para mamá</h1>
-    <p class="lead">Las Partes 1 a 4 se hacen una sola vez, en el Mac. Después estudias cada día en el móvil (Parte 5) o en el Mac (Parte 6): lo que hagas en uno aparece en el otro. Si algo no coincide con lo que ves, haz una captura y mándasela a Guillermo.</p>
+    <p class="lead">Instrucciones paso a paso. Ve despacio, haz un paso cada vez y no te saltes ninguno. Si algo no coincide con lo que ves en la pantalla, para, haz una captura y mándasela a Guillermo o llámale.</p>
+    <p class="small">Los botones aparecen en español si tu Mac y tu móvil están en español. Entre paréntesis pongo cómo se llaman en inglés, por si salen así.</p>
   </header>
 
-  <section>
+  <nav class="toc" aria-label="Partes">
+    <b>Qué vas a hacer</b>
+    <ol>
+      <li><a href="#p1">Instalar Anki en el Mac</a> · una vez</li>
+      <li><a href="#p2">Crear tu cuenta de AnkiWeb</a> · una vez</li>
+      <li><a href="#p3">Meter tu mazo en el Mac</a> · una vez</li>
+      <li><a href="#p4">Poner 8 palabras nuevas al día</a> · una vez</li>
+      <li><a href="#p5">Conectar el Mac con la web</a> · una vez</li>
+      <li><a href="#p6">Estudiar cada día en el móvil</a></li>
+      <li><a href="#p7">Estudiar en el Mac (si quieres)</a></li>
+    </ol>
+    <p class="small">Las partes 1 a 5 te llevarán unos 20 minutos, solo el primer día.</p>
+  </nav>
+
+  <section id="p1">
     <span class="part">Parte 1 · En el Mac · una sola vez</span>
-    <h2>Instalar Anki</h2>
+    <h2>Instalar Anki en el Mac</h2>
     <ol class="steps">
-      <li>Abre Safari y entra en <b>apps.ankiweb.net</b>.</li>
-      <li>Pulsa <span class="key">Download</span> y elige la versión para <b>Mac</b>. Se descarga un archivo.</li>
-      <li>Abre el archivo descargado (en la carpeta <b>Descargas</b>). Se abre una ventana con el icono de Anki: arrástralo a la carpeta <b>Aplicaciones</b>.</li>
-      <li>Abre <b>Aplicaciones</b> y haz doble clic en <b>Anki</b>. Si el Mac pregunta si quieres abrirla, pulsa <span class="key">Abrir</span>.</li>
+      <li>Primero mira qué tipo de Mac tienes: pulsa la <b>manzana </b> arriba a la izquierda de la pantalla → <span class="key">Acerca de este Mac</span>. Mira la línea <b>Chip</b> o <b>Procesador</b>:
+        <span class="small">si pone <b>Apple M1, M2, M3, M4…</b> tu Mac es «Apple Silicon». Si pone <b>Intel</b>, es «Intel». Apúntalo y cierra esa ventana.</span></li>
+      <li>Abre <b>Safari</b> y escribe arriba: <b>apps.ankiweb.net</b> y pulsa Intro.</li>
+      <li>Pulsa el botón <span class="key">Download</span> (descargar). Te ofrecerá versiones para Mac: elige la que coincide con lo que apuntaste (<b>Apple Silicon</b> o <b>Intel</b>). Espera a que termine la descarga.</li>
+      <li>Abre la carpeta <b>Descargas</b> (en el Dock, abajo, o en el Finder) y haz doble clic en el archivo que empieza por <b>anki</b> y acaba en <b>.dmg</b>.</li>
+      <li>Se abre una ventana con el icono de Anki (una estrella) y una carpeta <b>Aplicaciones</b>. <b>Arrastra la estrella encima de la carpeta Aplicaciones</b> y suelta. Espera unos segundos.</li>
+      <li>Abre la carpeta <b>Aplicaciones</b> (en el Finder, a la izquierda) y haz doble clic en <b>Anki</b>.
+        <span class="small">Si sale un aviso de que la app se ha descargado de internet, pulsa <span class="key">Abrir</span>.</span></li>
+      <li>La primera vez te pide el idioma: elige <span class="key">Español</span> y pulsa <span class="key">OK</span>. Si te pregunta algo más, deja lo que viene marcado y pulsa <span class="key">OK</span> o <span class="key">Continuar</span>.</li>
+      <li>Verás la pantalla principal de Anki, con un mazo vacío llamado <b>Default</b> o <b>Predeterminado</b>. Es normal. Deja Anki abierto.</li>
     </ol>
   </section>
 
-  <section>
+  <section id="p2">
     <span class="part">Parte 2 · Una sola vez</span>
     <h2>Crear tu cuenta de AnkiWeb (gratis)</h2>
-    <p>Es la cuenta que une el Mac y el móvil.</p>
+    <p>Es la cuenta que une el Mac y el móvil. Así lo que estudies en uno aparece en el otro.</p>
     <ol class="steps">
-      <li>En Safari, entra en <b>ankiweb.net</b> y pulsa <span class="key">Sign Up</span>.</li>
-      <li>Escribe tu email y una contraseña. Apúntalas en un papel: las necesitarás en el Mac y en el móvil.</li>
-      <li>Abre el email que te llega de AnkiWeb y pulsa el enlace para confirmar la cuenta.</li>
+      <li>En Safari, escribe arriba <b>ankiweb.net</b> y pulsa Intro.</li>
+      <li>Pulsa <span class="key">Sign Up</span> (registrarse).</li>
+      <li>Escribe tu email y una contraseña nueva, y acepta las condiciones. <b>Apunta el email y la contraseña en un papel</b>: los necesitarás en el Mac y en el móvil.</li>
+      <li>Abre tu correo. Te llegará un email de AnkiWeb: ábrelo y pulsa el enlace para confirmar la cuenta.
+        <span class="small">Si no lo ves en unos minutos, mira en la carpeta de correo no deseado (spam).</span></li>
     </ol>
   </section>
 
-  <section>
+  <section id="p3">
     <span class="part">Parte 3 · En el Mac · una sola vez</span>
     <h2>Meter tu mazo de inglés</h2>
     <ol class="steps">
-      <li>Guillermo te enviará un archivo llamado <b>Ingles_Mama.apkg</b>. Guárdalo en el Mac (por ejemplo en Descargas).</li>
-      <li>Haz <b>doble clic</b> en el archivo. Anki se abre y lo importa solo.
-        <span class="small">Si no funciona: en Anki, menú <span class="key">File</span> (o <span class="key">Archivo</span>) → <span class="key">Import</span> (o <span class="key">Importar</span>) y elige el archivo.</span></li>
-      <li>En la lista de mazos aparecerá <b>Inglés de mamá</b>. ¡Ya está dentro!</li>
+      <li>Guillermo te ha enviado un archivo llamado <b>Ingles_Mama.apkg</b>. Descárgalo en el Mac:
+        <span class="small">si te llegó por email, haz clic en el archivo adjunto y elige Descargar. Si te llegó por WhatsApp, ábrelo en WhatsApp del Mac y pulsa la flecha de descargar. Quedará en la carpeta <b>Descargas</b>.</span></li>
+      <li>Abre la carpeta <b>Descargas</b> y haz <b>doble clic</b> en <b>Ingles_Mama.apkg</b>.</li>
+      <li>Anki se pone delante y muestra una ventana de importar. No cambies nada y pulsa <span class="key">Importar</span> (Import), normalmente abajo a la derecha.
+        <span class="small">Si al hacer doble clic no pasa nada: en Anki, menú de arriba <span class="key">Archivo</span> (File) → <span class="key">Importar…</span> (Import), busca el archivo en Descargas y pulsa <span class="key">Abrir</span>.</span></li>
+      <li>Al terminar, en la lista de mazos aparece <b>Inglés de mamá</b>, con 98 palabras nuevas. ¡Ya está dentro!</li>
     </ol>
     <div class="warn">
       <b>Este archivo se importa una sola vez.</b>
-      <p>Si más adelante Guillermo te manda otro con palabras nuevas, se importa igual. Nunca vuelvas a importar el primero.</p>
+      <p>Si más adelante Guillermo te manda otro archivo con palabras nuevas, se importa igual. Pero nunca vuelvas a importar este primero.</p>
     </div>
   </section>
 
-  <section>
+  <section id="p4">
     <span class="part">Parte 4 · En el Mac · una sola vez</span>
+    <h2>Poner 8 palabras nuevas al día</h2>
+    <p>Anki viene con 20 nuevas al día: demasiadas. Con 8 estudiarás unos 15 minutos diarios.</p>
+    <ol class="steps">
+      <li>En la lista de mazos, a la derecha de <b>Inglés de mamá</b>, hay una <b>ruedecita</b> (⚙). Púlsala.</li>
+      <li>Elige <span class="key">Opciones</span> (Options). Se abre una ventana grande.</li>
+      <li>Arriba del todo, en el apartado <b>Límites diarios</b> (Daily Limits), busca <b>Nuevas tarjetas/día</b> (New cards/day). Borra el número que hay y escribe <b>8</b>.</li>
+      <li>Deja todo lo demás como está y pulsa el botón azul <span class="key">Guardar</span> (Save), arriba a la derecha. La ventana se cierra.</li>
+    </ol>
+  </section>
+
+  <section id="p5">
+    <span class="part">Parte 5 · En el Mac · una sola vez</span>
     <h2>Conectar el Mac con la web</h2>
     <ol class="steps">
-      <li>En Anki, pulsa el botón de <b>sincronizar</b>: el de arriba a la derecha (dos flechas en círculo).</li>
-      <li>Escribe el email y la contraseña de AnkiWeb de la Parte 2.</li>
-      <li>Te preguntará si quieres <span class="key">Upload</span> o <span class="key">Download</span>. Elige <span class="key">Upload</span> (subir): así tu mazo sube a la web.</li>
-      <li>Espera a que termine. Desde ahora Anki se sincroniza solo cada vez que lo abres y lo cierras.</li>
+      <li>En Anki, pulsa el botón <span class="key">Sincronizar</span> (Sync). Está arriba, a la derecha de la barra de botones (dos flechas en círculo).</li>
+      <li>Te pide entrar: escribe el <b>email</b> y la <b>contraseña</b> de AnkiWeb (la Parte 2) y pulsa <span class="key">OK</span> o <span class="key">Iniciar sesión</span>.</li>
+      <li>Si te pregunta si quieres <b>subir</b> o <b>descargar</b>, elige <span class="key">Subir a AnkiWeb</span> (Upload). Así tu mazo sube a la web.</li>
+      <li>Espera a que termine (unos segundos). Desde ahora, Anki en el Mac se sincroniza solo cada vez que lo abres y lo cierras.</li>
     </ol>
     <div class="warn">
-      <b>Solo esta primera vez</b> se elige Upload. Si alguna vez vuelve a preguntar Upload o Download, no elijas nada y llama a Guillermo.
+      <b>Solo esta primera vez se elige «Subir».</b>
+      <p>Si algún día vuelve a preguntarte subir o descargar, no pulses nada y llama a Guillermo.</p>
     </div>
   </section>
 
-  <section>
-    <span class="part">Parte 5 · Cada día · en el móvil</span>
+  <section id="p6">
+    <span class="part">Parte 6 · Cada día · en el móvil</span>
     <h2>Estudiar en el móvil</h2>
     <ol class="steps">
       <li>Toca el icono de <b>AnkiWeb</b> que tienes en la pantalla del móvil.</li>
-      <li>La primera vez te pedirá entrar: pon el mismo email y contraseña. Después ya no hace falta.</li>
-      <li>Toca <b>Inglés de mamá</b> y después el botón para empezar a estudiar.</li>
-      <li>Verás una palabra en inglés dentro de una frase. <b>Escucha el audio y di en voz alta qué significa.</b></li>
-      <li>Toca <span class="key">Show Answer</span> (mostrar respuesta). Compara con lo que habías dicho y lee los ejemplos.</li>
-      <li>Elige uno de los cuatro botones con sinceridad (ver la tabla). Sigue hasta que te diga que has terminado por hoy: unos 10 minutos.</li>
+      <li>La primera vez, pulsa <span class="key">Log In</span> (entrar) y pon el mismo email y contraseña. Después ya no hace falta.</li>
+      <li>Toca <b>Inglés de mamá</b>. Si aparece un botón para empezar (<span class="key">Estudiar</span> o <span class="key">Study Now</span>), tócalo.</li>
+      <li>Verás una frase en inglés con una palabra en verde. <b>Escucha el audio</b> y <b>di en voz alta qué significa</b> la palabra verde.
+        <span class="small">Si el audio no suena solo, toca el botón ▶ que aparece en la tarjeta.</span></li>
+      <li>Toca <span class="key">Mostrar respuesta</span> (Show Answer). Mira el significado, lee en voz alta la frase traducida y los ejemplos.</li>
+      <li>Toca uno de los cuatro botones de abajo, con sinceridad (mira la tabla).</li>
+      <li>Repite hasta que te diga que has terminado por hoy. Son unos 15 minutos.</li>
     </ol>
   </section>
 
-  <section>
-    <span class="part">Parte 6 · Cuando quieras · en el Mac</span>
+  <section id="p7">
+    <span class="part">Parte 7 · Cuando quieras · en el Mac</span>
     <h2>Estudiar en el Mac</h2>
     <ol class="steps">
       <li>Abre Anki. Se sincroniza solo y trae lo que hayas hecho en el móvil.</li>
-      <li>Haz clic en <b>Inglés de mamá</b> y después en <span class="key">Study Now</span> (Estudiar ahora).</li>
-      <li>Igual que en el móvil: piensa la respuesta, pulsa <span class="key">Show Answer</span> y elige un botón.</li>
-      <li>Al terminar, <b>cierra Anki</b>: así se sincroniza y en el móvil verás lo mismo.</li>
+      <li>Haz clic en <b>Inglés de mamá</b> y después en <span class="key">Estudiar ahora</span> (Study Now).</li>
+      <li>Igual que en el móvil: escucha, di la respuesta en voz alta, pulsa <span class="key">Mostrar respuesta</span> y elige un botón.</li>
+      <li>Al terminar, <b>cierra Anki</b> (menú <span class="key">Anki</span> → <span class="key">Salir</span>, o Cmd + Q): así se guarda en la web y en el móvil verás lo mismo.</li>
     </ol>
+    <p class="small">No estudies en los dos a la vez. Termina en uno y luego, si quieres, sigue en el otro.</p>
   </section>
 
   <section>
@@ -150,21 +194,32 @@ footer { color: var(--muted); font-size: .92rem; }
       <table>
         <thead><tr><th>Botón</th><th>Cuándo tocarlo</th></tr></thead>
         <tbody>
-          <tr><td><span class="key">Again</span></td><td>No me acordaba o me he equivocado. Vuelve a salir en unos minutos.</td></tr>
-          <tr><td><span class="key">Hard</span></td><td>La he sacado, pero me ha costado mucho.</td></tr>
-          <tr><td><span class="key">Good</span></td><td>La sabía. <b>Es el que más usarás.</b></td></tr>
-          <tr><td><span class="key">Easy</span></td><td>Facilísima.</td></tr>
+          <tr><td><span class="key">Otra vez</span> (Again)</td><td>No me acordaba, o me he equivocado. La verás otra vez en unos minutos. ¡Es normal y es bueno!</td></tr>
+          <tr><td><span class="key">Difícil</span> (Hard)</td><td>La he sacado, pero me ha costado mucho.</td></tr>
+          <tr><td><span class="key">Bien</span> (Good)</td><td>La sabía. <b>Es el que más usarás.</b></td></tr>
+          <tr><td><span class="key">Fácil</span> (Easy)</td><td>Facilísima, la sabía al instante.</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="small">En español pueden aparecer como Otra vez, Difícil, Bien y Fácil. Encima de cada botón pone cuándo volverá la tarjeta (10m = 10 minutos, 1d = mañana).</p>
-    <div class="warn">
-      <b>El truco es la constancia.</b>
-      <p>Mejor 10 minutos todos los días que una hora el domingo. Si un día no puedes, al siguiente tendrás algo más de repaso: es normal.</p>
+    <p class="small">Encima de cada botón pone cuándo volverás a ver la tarjeta: 1m = 1 minuto, 10m = 10 minutos, 1d = mañana, 4d = dentro de 4 días.</p>
+  </section>
+
+  <section>
+    <span class="part">Si algo falla</span>
+    <div class="tablewrap">
+      <table>
+        <tbody>
+          <tr><td>Hoy no me salen palabras</td><td>Ya has hecho las de hoy. Mañana habrá más.</td></tr>
+          <tr><td>No suena el audio en el móvil</td><td>Sube el volumen y quita el modo silencio (el botón del lateral del iPhone). Si sigue sin sonar, toca ▶ en la tarjeta.</td></tr>
+          <tr><td>He olvidado la contraseña</td><td>En ankiweb.net, pulsa Log In y después «Forgot password» (he olvidado la contraseña).</td></tr>
+          <tr><td>Un día no pude estudiar</td><td>No pasa nada. Al día siguiente tendrás algunas tarjetas más de repaso.</td></tr>
+          <tr><td>Cualquier otra cosa</td><td>Captura de pantalla y WhatsApp a Guillermo.</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <footer>Hecho por Guillermo. Si algo no sale como aquí, haz una captura de pantalla y mándasela por WhatsApp.</footer>
+  <footer>Hecho por Guillermo para mamá. ¡Ánimo, 15 minutos al día y en unas semanas notarás la diferencia!</footer>
 </main>
 
 </body></html>
